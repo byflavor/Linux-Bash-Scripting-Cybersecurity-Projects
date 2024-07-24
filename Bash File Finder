@@ -1,0 +1,31 @@
+
+
+	echo "Here is the content of your directory " $1
+	
+
+arr=($(ls $1))
+
+for i in ${!arr[*]}; do
+    
+    echo "${arr[i]}"  
+done
+
+
+echo "There are " ${#arr[@]}  " elements in " $1
+
+for i in ${!arr[*]}; do
+    showFiles() $i $2 
+done
+
+count=0
+showFiles(){
+grep $2 $1
+if grep -Fxq $1 $2
+then
+    ((count=count+1))
+fi
+
+
+echo "File that contains " $2 " keyword in $1 directory"
+}
+

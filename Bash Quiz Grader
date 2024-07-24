@@ -1,0 +1,64 @@
+
+#quiz that grades 4 arithmetic questions with random numbers
+
+score=0
+x=1
+while (( $x < 5 )) ; do
+echo "Enter +, -, %, *"
+read input
+num1=$(( $RANDOM%10 + 1 ))
+num2=$(( $RANDOM%20 + 10 ))
+echo $num1 $input $num2
+if [[ "$input" == "+" ]]; then
+let x++
+var1=$(( $num1+$num2 ))
+echo -n Enter answer:
+read input2
+	if [[ $var1 -eq $input2 ]]; then
+		echo You are correct
+		let score++
+	else 
+		echo Wrong
+	fi
+elif [[ "$input" == "-" ]]; then
+let x++
+var1=$(( $num1-$num2 ))
+echo -n Enter answer:
+read input2
+	if [[ $var1 -eq $input2 ]]; then
+		echo You are correct
+		let score++
+	else 
+		echo Wrong
+	fi
+elif [[ "$input" == "%" ]]; then
+let x++
+var1=$(( $num1%$num2 ))
+echo -n Enter answer:
+read input2
+	if [[ $var1 -eq $input2 ]]; then
+		echo You are correct
+		let score++
+	else 
+		echo Wrong
+	fi
+elif [[ "$input" == "*" ]]; then
+let x++
+var1=$(( $num1*$num2 ))
+echo -n Enter answer:
+read input2
+	if [[ $var1 -eq $input2 ]]; then
+		echo You are correct
+		let score++
+	else 
+		echo Wrong
+	fi
+fi
+done
+echo You guessed $score answers correctly.
+if (( $score >= 3 )); then
+echo You scored 75% or greater. good job!
+else
+echo You scored less than 75%. Study more arithmetic!
+echo $score | bc -1
+fi
